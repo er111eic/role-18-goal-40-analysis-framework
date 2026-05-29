@@ -24,6 +24,16 @@
       "action": "可能已受市場注意，只等回檔不追高"
     },
     {
+      "code": "2344",
+      "name": "華邦電",
+      "totalNetBuyLots": 71837,
+      "foreignNetBuyLots": 53583,
+      "trustNetBuyLots": 17253,
+      "dealerNetBuyLots": 0,
+      "signal": "外資與投信同步買超，列入優先觀察",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
       "code": "2324",
       "name": "仁寶",
       "totalNetBuyLots": 70347,
@@ -39,16 +49,6 @@
       "totalNetBuyLots": 69476,
       "foreignNetBuyLots": 66341,
       "trustNetBuyLots": 9,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "可能已受市場注意，只等回檔不追高"
-    },
-    {
-      "code": "2344",
-      "name": "華邦電",
-      "totalNetBuyLots": 65802,
-      "foreignNetBuyLots": 53583,
-      "trustNetBuyLots": 11218,
       "dealerNetBuyLots": 0,
       "signal": "外資與投信同步買超，列入優先觀察",
       "action": "可能已受市場注意，只等回檔不追高"
@@ -106,9 +106,9 @@
     {
       "code": "2408",
       "name": "南亞科",
-      "totalNetBuyLots": 21432,
+      "totalNetBuyLots": 24487,
       "foreignNetBuyLots": 19483,
-      "trustNetBuyLots": 1740,
+      "trustNetBuyLots": 4795,
       "dealerNetBuyLots": 0,
       "signal": "外資與投信同步買超，列入優先觀察",
       "action": "可能已受市場注意，只等回檔不追高"
