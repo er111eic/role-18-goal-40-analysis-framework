@@ -6,12 +6,36 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 const outputPath = resolve(root, "data", "institutional-flows.json");
 
-const dateArg = process.argv[2] || new Date().toISOString().slice(0, 10).replaceAll("-", "");
-const endpoint = `https://www.twse.com.tw/rwd/zh/fund/T86?date=${dateArg}&selectType=ALLBUT0999&response=json`;
+const dateArg = process.argv[2];
+const maxLookbackDays = dateArg ? 0 : 10;
 
 const numeric = (value) => Number(String(value || "0").replaceAll(",", "")) || 0;
 const lots = (shares) => Math.round(shares / 1000);
 const isCommonStockCode = (code) => /^[1-9][0-9]{3}$/.test(String(code || "").trim());
+
+function formatTaipeiDate(date = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Taipei",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}${values.month}${values.day}`;
+}
+
+function shiftDate(dateText, days) {
+  const year = Number(dateText.slice(0, 4));
+  const month = Number(dateText.slice(4, 6));
+  const day = Number(dateText.slice(6, 8));
+  const date = new Date(Date.UTC(year, month - 1, day + days));
+  return date.toISOString().slice(0, 10).replaceAll("-", "");
+}
+
+function endpointFor(dateText) {
+  return `https://www.twse.com.tw/rwd/zh/fund/T86?date=${dateText}&selectType=ALLBUT0999&response=json`;
+}
 
 function columnIndex(fields, candidates) {
   return candidates
@@ -34,7 +58,8 @@ function action(row) {
   return "僅觀察，不用單日買超進場";
 }
 
-async function main() {
+async function fetchRows(dateText) {
+  const endpoint = endpointFor(dateText);
   const response = await fetch(endpoint, {
     headers: {
       "user-agent": "Mozilla/5.0 research-dashboard"
@@ -77,19 +102,47 @@ async function main() {
     .sort((a, b) => b.totalNetBuyLots - a.totalNetBuyLots)
     .slice(0, 30);
 
+  if (!rows.length) {
+    throw new Error("TWSE returned no common-stock net-buy rows");
+  }
+
+  return { dateText, endpoint, rows };
+}
+
+async function main() {
+  const baseDate = dateArg || formatTaipeiDate();
+  let result;
+  let lastError;
+
+  for (let daysBack = 0; daysBack <= maxLookbackDays; daysBack += 1) {
+    const dateText = shiftDate(baseDate, -daysBack);
+    try {
+      result = await fetchRows(dateText);
+      break;
+    } catch (error) {
+      lastError = error;
+      console.warn(`Skipped ${dateText}: ${error.message}`);
+    }
+  }
+
+  if (!result) {
+    throw lastError || new Error("Unable to load TWSE T86 data");
+  }
+
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(
     outputPath,
     `${JSON.stringify({
-      asOf: dateArg,
+      asOf: result.dateText,
       source: "TWSE T86 三大法人買賣超日報",
-      endpoint,
-      rows
+      endpoint: result.endpoint,
+      rows: result.rows
     }, null, 2)}\n`
   );
 
   console.log(`Updated ${outputPath}`);
-  console.log(`Rows: ${rows.length}`);
+  console.log(`Date: ${result.dateText}`);
+  console.log(`Rows: ${result.rows.length}`);
 }
 
 main().catch((error) => {
