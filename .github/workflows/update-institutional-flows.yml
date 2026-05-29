@@ -1,4 +1,4 @@
-name: Update institutional flows
+name: Update market data
 
 on:
   workflow_dispatch:
@@ -23,8 +23,11 @@ jobs:
       - name: Update TWSE T86 data
         run: node scripts/update_twse_t86.mjs
 
+      - name: Update market history data
+        run: node scripts/update_market_history.mjs
+
       - name: Commit updated data
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Update institutional flow data"
-          file_pattern: data/institutional-flows.json
+          commit_message: "Update market data"
+          file_pattern: data/*.json

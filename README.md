@@ -39,6 +39,16 @@ data/institutional-flows.json
 
 GitHub Actions 已設定每週一至週五台北時間 18:30 自動更新一次，也可在 GitHub 的 Actions 頁面手動執行 `Update institutional flows`。
 
+## 更新股價曲線資料
+
+市場監控分頁使用 `data/market-history.json` 繪製內建 90 日曲線：
+
+```bash
+node scripts/update_market_history.mjs
+```
+
+資料來源為 Yahoo Finance chart API。此資料用於研究輔助與趨勢檢查，不等同交易所即時報價。
+
 ## 紀律提醒
 
 單日買超不是買點。網站只把資料轉成觀察清單，真正進場仍要看：

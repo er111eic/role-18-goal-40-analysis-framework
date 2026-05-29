@@ -51,6 +51,29 @@ const draft = document.querySelector("#draft");
 const flowList = document.querySelector("#flowList");
 const flowStatus = document.querySelector("#flowStatus");
 const asOfValue = document.querySelector("#asOfValue");
+const tickerSelect = document.querySelector("#tickerSelect");
+const chartTitle = document.querySelector("#chartTitle");
+const priceChart = document.querySelector("#priceChart");
+const customTickerInput = document.querySelector("#customTickerInput");
+const addTickerBtn = document.querySelector("#addTickerBtn");
+const customWatchlist = document.querySelector("#customWatchlist");
+
+const chartSymbols = [
+  { code: "2330", name: "台積電", symbol: "TWSE:2330" },
+  { code: "2317", name: "鴻海", symbol: "TWSE:2317" },
+  { code: "2454", name: "聯發科", symbol: "TWSE:2454" },
+  { code: "2308", name: "台達電", symbol: "TWSE:2308" },
+  { code: "2382", name: "廣達", symbol: "TWSE:2382" },
+  { code: "3231", name: "緯創", symbol: "TWSE:3231" },
+  { code: "TAIEX", name: "加權指數", symbol: "TWSE:TAIEX" },
+  { code: "IXIC", name: "NASDAQ", symbol: "NASDAQ:IXIC" },
+  { code: "SOX", name: "費半", symbol: "NASDAQ:SOX" },
+  { code: "DXY", name: "美元指數", symbol: "TVC:DXY" },
+  { code: "US10Y", name: "美債 10 年", symbol: "TVC:US10Y" }
+];
+
+const customWatchlistKey = "retailResearchWatchlist";
+let marketHistory = { rows: [] };
 
 const fallbackFlows = {
   asOf: "範例資料",
@@ -89,6 +112,146 @@ const fallbackFlows = {
   ]
 };
 
+function stockNameForCode(code) {
+  return stocks.find((stock) => stock.code === code)?.name || chartSymbols.find((item) => item.code === code)?.name || "自選標的";
+}
+
+function symbolForCode(code) {
+  if (/^[0-9]{4}$/.test(code)) return `TWSE:${code}`;
+  return chartSymbols.find((item) => item.code === code)?.symbol || code;
+}
+
+function loadCustomWatchlist() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(customWatchlistKey) || "[]");
+    return Array.isArray(saved) && saved.length ? saved : ["2330", "2317", "2454", "2308"];
+  } catch {
+    return ["2330", "2317", "2454", "2308"];
+  }
+}
+
+function saveCustomWatchlist(codes) {
+  localStorage.setItem(customWatchlistKey, JSON.stringify(codes));
+}
+
+let customTickers = loadCustomWatchlist();
+
+function renderTickerOptions() {
+  tickerSelect.innerHTML = chartSymbols
+    .map((item) => `<option value="${item.symbol}">${item.code} ${item.name}</option>`)
+    .join("");
+}
+
+function renderChart(symbol = "TWSE:2330") {
+  const item = chartSymbols.find((entry) => entry.symbol === symbol);
+  chartTitle.textContent = item ? `${item.name} ${item.code}` : symbol;
+  const row = (marketHistory.rows || []).find((entry) => entry.tradingView === symbol || entry.code === symbol);
+  const encodedSymbol = encodeURIComponent(row?.tradingView || symbol);
+  const directUrl = `https://www.tradingview.com/chart/?symbol=${encodedSymbol}`;
+
+  if (!row || !row.points?.length) {
+    priceChart.innerHTML = `
+      <div class="chart-empty">
+        <strong>尚未有內建價格資料</strong>
+        <p>可先開啟 TradingView，或等待 GitHub Actions 下一次更新 market-history.json。</p>
+        <a href="${directUrl}" target="_blank" rel="noreferrer">開啟 TradingView 圖表</a>
+      </div>
+    `;
+    return;
+  }
+
+  const points = row.points.slice(-90);
+  const values = points.map((point) => point.close);
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  const width = 820;
+  const height = 330;
+  const pad = 24;
+  const plotWidth = width - pad * 2;
+  const plotHeight = height - pad * 2;
+  const path = points
+    .map((point, index) => {
+      const x = pad + (index / Math.max(points.length - 1, 1)) * plotWidth;
+      const y = pad + (1 - (point.close - min) / range) * plotHeight;
+      return `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`;
+    })
+    .join(" ");
+  const latest = points.at(-1);
+  const first = points[0];
+  const periodChangePercent = first ? ((latest.close - first.close) / first.close) * 100 : 0;
+  const toneClass = row.change >= 0 ? "up" : "down";
+
+  priceChart.innerHTML = `
+    <div class="price-header">
+      <div>
+        <span>最新收盤</span>
+        <strong>${Number(row.latestClose).toLocaleString("zh-TW", { maximumFractionDigits: 2 })}</strong>
+      </div>
+      <div class="${toneClass}">
+        <span>日變動</span>
+        <strong>${row.change >= 0 ? "+" : ""}${row.change.toFixed(2)} / ${row.changePercent.toFixed(2)}%</strong>
+      </div>
+      <div>
+        <span>近 90 日</span>
+        <strong>${periodChangePercent >= 0 ? "+" : ""}${periodChangePercent.toFixed(2)}%</strong>
+      </div>
+    </div>
+    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${chartTitle.textContent} 近 90 日收盤價曲線">
+      <line x1="${pad}" y1="${pad}" x2="${pad}" y2="${height - pad}" class="chart-axis"></line>
+      <line x1="${pad}" y1="${height - pad}" x2="${width - pad}" y2="${height - pad}" class="chart-axis"></line>
+      <path d="${path} L ${width - pad} ${height - pad} L ${pad} ${height - pad} Z" class="chart-area"></path>
+      <path d="${path}" class="chart-line"></path>
+    </svg>
+    <div class="chart-footer">
+      <span>${first.date} 至 ${latest.date}｜${row.currency || row.exchangeName || "market data"}</span>
+      <a href="${directUrl}" target="_blank" rel="noreferrer">開啟 TradingView 圖表</a>
+    </div>
+  `;
+}
+
+async function loadMarketHistory() {
+  try {
+    const response = await fetch("data/market-history.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("missing market data");
+    marketHistory = await response.json();
+  } catch {
+    marketHistory = { rows: [] };
+  }
+  renderChart(tickerSelect.value || "TWSE:2330");
+}
+
+function renderCustomWatchlist() {
+  customWatchlist.innerHTML = customTickers
+    .map((code) => {
+      const name = stockNameForCode(code);
+      return `
+        <div class="watch-row">
+          <strong>${code} ${name}</strong>
+          <button type="button" data-watch-symbol="${symbolForCode(code)}">看圖</button>
+          <button type="button" class="remove" data-remove-code="${code}">移除</button>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function addCustomTicker() {
+  const code = customTickerInput.value.trim().toUpperCase();
+  if (!/^[0-9]{4}$/.test(code) && !/^[A-Z0-9:._-]{2,20}$/.test(code)) {
+    customTickerInput.value = "";
+    customTickerInput.placeholder = "請輸入 4 碼台股代號";
+    return;
+  }
+
+  if (!customTickers.includes(code)) {
+    customTickers = [code, ...customTickers].slice(0, 18);
+    saveCustomWatchlist(customTickers);
+    renderCustomWatchlist();
+  }
+  customTickerInput.value = "";
+}
+
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
     navButtons.forEach((item) => {
@@ -104,6 +267,9 @@ navButtons.forEach((button) => {
     const targetPanel = document.querySelector(`#${button.dataset.target}`);
     targetPanel.classList.add("active");
     targetPanel.hidden = false;
+    if (button.dataset.target === "market") {
+      renderChart(tickerSelect.value || "TWSE:2330");
+    }
   });
 });
 
@@ -166,6 +332,32 @@ filter.addEventListener("change", (event) => {
   renderStocks(event.target.value);
 });
 
+tickerSelect.addEventListener("change", (event) => {
+  renderChart(event.target.value);
+});
+
+addTickerBtn.addEventListener("click", addCustomTicker);
+
+customTickerInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") addCustomTicker();
+});
+
+customWatchlist.addEventListener("click", (event) => {
+  const chartSymbol = event.target.dataset.watchSymbol;
+  const removeCode = event.target.dataset.removeCode;
+
+  if (chartSymbol) {
+    renderChart(chartSymbol);
+    return;
+  }
+
+  if (removeCode) {
+    customTickers = customTickers.filter((code) => code !== removeCode);
+    saveCustomWatchlist(customTickers);
+    renderCustomWatchlist();
+  }
+});
+
 buildBtn.addEventListener("click", () => {
   const input = rawInput.value.trim();
   const subject = input.match(/[0-9]{4}\s*[\u4e00-\u9fa5A-Za-z-]+/)?.[0] || "待分析標的";
@@ -182,7 +374,10 @@ buildBtn.addEventListener("click", () => {
 });
 
 renderStocks();
+renderTickerOptions();
+renderCustomWatchlist();
 panels.forEach((panel) => {
   panel.hidden = !panel.classList.contains("active");
 });
 loadFlows();
+loadMarketHistory();

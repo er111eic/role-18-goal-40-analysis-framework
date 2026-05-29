@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>散戶翻身系統｜法人級研究台</title>
-    <link rel="stylesheet" href="styles.css?v=20260529-liquid-glass">
+    <link rel="stylesheet" href="styles.css?v=20260529-market-monitor">
   </head>
   <body>
     <a class="skip-link" href="#brief">跳到主要內容</a>
@@ -22,6 +22,7 @@
     <main class="workspace">
       <aside class="sidebar" aria-label="研究模組" role="tablist">
         <button class="nav-button active" data-target="brief" role="tab" aria-selected="true" aria-controls="brief">研究總覽</button>
+        <button class="nav-button" data-target="market" role="tab" aria-selected="false" aria-controls="market">市場監控</button>
         <button class="nav-button" data-target="tsmc" role="tab" aria-selected="false" aria-controls="tsmc">台積電法說會</button>
         <button class="nav-button" data-target="watchlist" role="tab" aria-selected="false" aria-controls="watchlist">40 檔權值股</button>
         <button class="nav-button" data-target="chips" role="tab" aria-selected="false" aria-controls="chips">法人買超觀察</button>
@@ -62,6 +63,90 @@
               <li><strong>紀律：</strong>沒有買點就不買；跌破條件就退出；不要用故事取代紀律。</li>
             </ul>
           </div>
+        </section>
+
+        <section id="market" class="panel" role="tabpanel">
+          <div class="section-heading">
+            <h2>市場監控</h2>
+            <p>把股價、總經事件、財報與情緒放在同一張檢查表。這裡不是買進訊號產生器，是避免追高的風控儀表板。</p>
+          </div>
+
+          <div class="market-layout">
+            <div class="chart-panel">
+              <div class="chart-toolbar">
+                <div>
+                  <span>目前股價與曲線圖</span>
+                  <strong id="chartTitle">台積電 2330</strong>
+                </div>
+                <div class="ticker-controls">
+                  <label for="tickerSelect">標的</label>
+                  <select id="tickerSelect"></select>
+                </div>
+              </div>
+              <div id="priceChart" class="price-chart" aria-label="股價曲線圖"></div>
+              <p class="chart-note">股價與圖表由 TradingView 提供；延遲、交易所資料權限與可用性以第三方元件為準。</p>
+            </div>
+
+            <div class="watch-panel">
+              <h3>自選股</h3>
+              <div class="watch-form">
+                <input id="customTickerInput" type="text" inputmode="numeric" placeholder="輸入台股代號，例如 2330">
+                <button id="addTickerBtn" class="secondary-button">加入</button>
+              </div>
+              <div id="customWatchlist" class="custom-watchlist"></div>
+            </div>
+          </div>
+
+          <div class="macro-grid">
+            <article class="macro-card">
+              <span>CPI</span>
+              <strong>通膨數據先看趨勢，不看單月驚嚇</strong>
+              <p>核心 CPI 若連續回落，利率壓力下降；若服務通膨黏著，成長股估值不能亂擴張。</p>
+              <a href="https://www.bls.gov/cpi/" target="_blank" rel="noreferrer">BLS CPI</a>
+            </article>
+            <article class="macro-card">
+              <span>FOMC</span>
+              <strong>點陣圖與記者會，比一句降息更重要</strong>
+              <p>看利率路徑、QT、就業與通膨措辭。市場若提前押太滿，會議後反而容易修正。</p>
+              <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm" target="_blank" rel="noreferrer">Fed FOMC</a>
+            </article>
+            <article class="macro-card">
+              <span>財報</span>
+              <strong>只接受營收、毛利率、EPS 與指引驗證</strong>
+              <p>題材再漂亮，沒有財報兌現就是低可信。好公司若財報不如預期，先降槓桿。</p>
+              <a href="https://mops.twse.com.tw/mops/web/index" target="_blank" rel="noreferrer">公開資訊觀測站</a>
+            </article>
+            <article class="macro-card">
+              <span>法說會</span>
+              <strong>管理層語氣要和數字互相驗證</strong>
+              <p>若訂單、產能、庫存、資本支出與毛利率方向一致，才列入長線趨勢。</p>
+              <a href="https://mops.twse.com.tw/mops/web/t100sb07_1" target="_blank" rel="noreferrer">法說會資訊</a>
+            </article>
+            <article class="macro-card">
+              <span>總經</span>
+              <strong>利率、美元、油價與半導體循環一起看</strong>
+              <p>台股科技股不能只看公司本身。美元與利率若同時升溫，估值風險會先壓過故事。</p>
+              <a href="https://fred.stlouisfed.org/" target="_blank" rel="noreferrer">FRED</a>
+            </article>
+            <article class="macro-card">
+              <span>情緒</span>
+              <strong>新聞越密集，越要假設交易已擁擠</strong>
+              <p>熱門股出現爆量、開高走低、利多不漲，就是散戶高風險區。不要把熱鬧當勝率。</p>
+              <a href="https://www.taifex.com.tw/cht/3/pcRatio" target="_blank" rel="noreferrer">台指選擇權 Put/Call</a>
+            </article>
+          </div>
+
+          <table class="discipline monitor-table">
+            <thead>
+              <tr><th>監控項目</th><th>法人級判讀</th><th>散戶紀律</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>股價曲線</td><td>先看趨勢與均線位置，不用一根紅 K 下決定。</td><td>突破後不追，等回測；跌破月線要降風險。</td></tr>
+              <tr><td>CPI / FOMC</td><td>決定估值倍數上限，尤其影響高本益比科技股。</td><td>事件前不重押，事件後看市場反應再行動。</td></tr>
+              <tr><td>財報 / 法說</td><td>驗證題材是否變成訂單與獲利。</td><td>沒有數字確認，不把故事當買點。</td></tr>
+              <tr><td>情緒</td><td>新聞與成交量過熱時，籌碼已經擁擠。</td><td>越熱越等，持股者分批保護獲利。</td></tr>
+            </tbody>
+          </table>
         </section>
 
         <section id="tsmc" class="panel" role="tabpanel">
@@ -180,6 +265,6 @@
       <p>本網站是研究流程工具，不是投資建議。實際交易需自行確認價格、籌碼與風險承受度。官方資料更新腳本見 README。</p>
     </footer>
 
-    <script src="app.js?v=20260529-liquid-glass"></script>
+    <script src="app.js?v=20260529-market-monitor"></script>
   </body>
 </html>
