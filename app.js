@@ -50,6 +50,7 @@ const buildBtn = document.querySelector("#buildBtn");
 const draft = document.querySelector("#draft");
 const flowList = document.querySelector("#flowList");
 const flowStatus = document.querySelector("#flowStatus");
+const asOfValue = document.querySelector("#asOfValue");
 
 const fallbackFlows = {
   asOf: "範例資料",
@@ -90,10 +91,19 @@ const fallbackFlows = {
 
 navButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    navButtons.forEach((item) => item.classList.remove("active"));
-    panels.forEach((panel) => panel.classList.remove("active"));
+    navButtons.forEach((item) => {
+      item.classList.remove("active");
+      item.setAttribute("aria-selected", "false");
+    });
+    panels.forEach((panel) => {
+      panel.classList.remove("active");
+      panel.hidden = true;
+    });
     button.classList.add("active");
-    document.querySelector(`#${button.dataset.target}`).classList.add("active");
+    button.setAttribute("aria-selected", "true");
+    const targetPanel = document.querySelector(`#${button.dataset.target}`);
+    targetPanel.classList.add("active");
+    targetPanel.hidden = false;
   });
 });
 
@@ -123,6 +133,9 @@ function formatLots(value) {
 function renderFlows(payload) {
   const rows = (payload.rows || []).slice(0, 9);
   flowStatus.textContent = `${payload.asOf}｜${payload.source}`;
+  if (payload.asOf && payload.asOf !== "範例資料") {
+    asOfValue.textContent = String(payload.asOf).replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");
+  }
   flowList.innerHTML = rows
     .map((row) => `
       <article class="flow-card">
@@ -169,4 +182,7 @@ buildBtn.addEventListener("click", () => {
 });
 
 renderStocks();
+panels.forEach((panel) => {
+  panel.hidden = !panel.classList.contains("active");
+});
 loadFlows();

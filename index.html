@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <a class="skip-link" href="#brief">跳到主要內容</a>
     <header class="topbar">
       <div>
         <h1>散戶翻身系統</h1>
@@ -14,21 +15,21 @@
       </div>
       <div class="asof">
         <span>資料基準</span>
-        <strong>2026-05-27</strong>
+        <strong id="asOfValue">2026-05-27</strong>
       </div>
     </header>
 
     <main class="workspace">
-      <aside class="sidebar" aria-label="研究模組">
-        <button class="nav-button active" data-target="brief">研究總覽</button>
-        <button class="nav-button" data-target="tsmc">台積電法說會</button>
-        <button class="nav-button" data-target="watchlist">40 檔權值股</button>
-        <button class="nav-button" data-target="chips">法人買超觀察</button>
-        <button class="nav-button" data-target="builder">貼資料產生分析</button>
+      <aside class="sidebar" aria-label="研究模組" role="tablist">
+        <button class="nav-button active" data-target="brief" role="tab" aria-selected="true" aria-controls="brief">研究總覽</button>
+        <button class="nav-button" data-target="tsmc" role="tab" aria-selected="false" aria-controls="tsmc">台積電法說會</button>
+        <button class="nav-button" data-target="watchlist" role="tab" aria-selected="false" aria-controls="watchlist">40 檔權值股</button>
+        <button class="nav-button" data-target="chips" role="tab" aria-selected="false" aria-controls="chips">法人買超觀察</button>
+        <button class="nav-button" data-target="builder" role="tab" aria-selected="false" aria-controls="builder">貼資料產生分析</button>
       </aside>
 
       <section class="content">
-        <section id="brief" class="panel active">
+        <section id="brief" class="panel active" role="tabpanel">
           <div class="section-heading">
             <h2>研究總覽</h2>
             <p>先把市場雜訊壓掉，只保留可被法說會、財報、法人籌碼驗證的訊號。</p>
@@ -63,7 +64,7 @@
           </div>
         </section>
 
-        <section id="tsmc" class="panel">
+        <section id="tsmc" class="panel" role="tabpanel">
           <div class="section-heading">
             <h2>台積電 2026Q1 法說會拆解</h2>
             <p>來源採用台積電投資人關係財報、法說逐字稿與簡報。此區可作為後續每季更新模板。</p>
@@ -114,7 +115,7 @@
           </div>
         </section>
 
-        <section id="watchlist" class="panel">
+        <section id="watchlist" class="panel" role="tabpanel">
           <div class="section-heading">
             <h2>40 檔核心權值股篩選表</h2>
             <p>第一版先放台股大型權值股骨架。未匯入即時籌碼者一律標示待驗證，不假裝有資料。</p>
@@ -131,7 +132,7 @@
           <div id="stockGrid" class="stock-grid"></div>
         </section>
 
-        <section id="chips" class="panel">
+        <section id="chips" class="panel" role="tabpanel">
           <div class="section-heading">
             <h2>法人買超觀察</h2>
             <p>這裡用來放連續買超標的。單日買超不構成買點，必須搭配基本面與過熱度。</p>
@@ -163,7 +164,7 @@
           </div>
         </section>
 
-        <section id="builder" class="panel">
+        <section id="builder" class="panel" role="tabpanel">
           <div class="section-heading">
             <h2>貼資料產生分析</h2>
             <p>把法說會摘要、股票代號、法人買超清單貼進來，網站會先產出標準化四框架草稿。</p>
