@@ -116,6 +116,9 @@ a {
   .topbar,
   .sidebar,
   .summary-grid article,
+  .decision-strip article,
+  .decision-column,
+  .decision-card,
   .framework article,
   .stock-card,
   .rules,
@@ -231,13 +234,27 @@ textarea {
 
 .summary-grid,
 .stock-grid,
-.macro-grid {
+.macro-grid,
+.decision-strip,
+.decision-board {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
+.decision-board {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 14px 0 18px;
+}
+
+.decision-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .summary-grid article,
+.decision-strip article,
+.decision-column,
+.decision-card,
 .framework article,
 .stock-card,
 .rules,
@@ -257,6 +274,8 @@ textarea {
 }
 
 .summary-grid article,
+.decision-strip article,
+.decision-column,
 .framework article,
 .stock-card,
 .chart-panel,
@@ -268,10 +287,86 @@ textarea {
 }
 
 .summary-grid strong,
+.decision-strip strong,
 .flow-card strong,
 .stock-card strong {
   display: block;
   font-size: 18px;
+}
+
+.decision-strip {
+  margin-bottom: 14px;
+}
+
+.decision-strip article {
+  min-height: 106px;
+}
+
+.decision-strip span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.decision-strip strong {
+  margin: 2px 0 4px;
+  font-size: 24px;
+}
+
+.decision-column h3 {
+  margin-bottom: 12px;
+}
+
+.decision-list {
+  display: grid;
+  gap: 10px;
+}
+
+.decision-card {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.decision-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.decision-card-head span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.decision-card p {
+  color: var(--text);
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+.decision-card ul {
+  color: var(--muted);
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+}
+
+.tier-a h3 {
+  color: var(--primary);
+}
+
+.tier-b h3,
+.tier-c h3 {
+  color: var(--amber);
+}
+
+.tier-d h3 {
+  color: var(--danger);
+}
+
+.decision-empty {
+  color: var(--muted);
 }
 
 .summary-grid strong {
@@ -723,6 +818,9 @@ footer {
   .topbar,
   .sidebar,
   .summary-grid article,
+  .decision-strip article,
+  .decision-column,
+  .decision-card,
   .framework article,
   .stock-card,
   .rules,
@@ -767,6 +865,8 @@ footer {
   }
 
   .summary-grid,
+  .decision-strip,
+  .decision-board,
   .framework,
   .stock-grid,
   .macro-grid,

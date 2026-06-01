@@ -51,6 +51,8 @@ const draft = document.querySelector("#draft");
 const flowList = document.querySelector("#flowList");
 const flowStatus = document.querySelector("#flowStatus");
 const asOfValue = document.querySelector("#asOfValue");
+const decisionSummary = document.querySelector("#decisionSummary");
+const decisionBoard = document.querySelector("#decisionBoard");
 const tickerSelect = document.querySelector("#tickerSelect");
 const chartTitle = document.querySelector("#chartTitle");
 const priceChart = document.querySelector("#priceChart");
@@ -74,6 +76,7 @@ const chartSymbols = [
 
 const customWatchlistKey = "retailResearchWatchlist";
 let marketHistory = { rows: [] };
+let institutionalFlows = { rows: [] };
 
 const fallbackFlows = {
   asOf: "範例資料",
@@ -135,6 +138,114 @@ function saveCustomWatchlist(codes) {
 }
 
 let customTickers = loadCustomWatchlist();
+
+function marketRowForCode(code) {
+  return (marketHistory.rows || []).find((row) => row.code === code);
+}
+
+function flowRowForCode(code) {
+  return (institutionalFlows.rows || []).find((row) => row.code === code);
+}
+
+function recentChangePercent(row) {
+  const points = row?.points?.slice(-90) || [];
+  const first = points[0];
+  const latest = points.at(-1);
+  if (!first || !latest) return null;
+  return ((latest.close - first.close) / first.close) * 100;
+}
+
+function evaluateStock(stock) {
+  const market = marketRowForCode(stock.code);
+  const flow = flowRowForCode(stock.code);
+  const change90 = recentChangePercent(market);
+  const netBuy = flow?.totalNetBuyLots || 0;
+  const reasons = [];
+  let tier = "C";
+  let action = "只觀察，不急著買";
+
+  if (stock.category === "core") reasons.push("長線護體股");
+  if (stock.category === "growth") reasons.push("波動成長股");
+  if (stock.category === "watch") reasons.push("基本面待驗證");
+  if (flow) reasons.push(`法人買超 ${formatLots(netBuy)} 張`);
+  if (change90 !== null) reasons.push(`90日 ${change90 >= 0 ? "+" : ""}${change90.toFixed(1)}%`);
+
+  if (change90 !== null && change90 <= -12) {
+    tier = "D";
+    action = "降風險或暫停加碼";
+    reasons.push("股價轉弱");
+  } else if ((change90 !== null && change90 >= 35) || netBuy >= 30000) {
+    tier = "B";
+    action = "可守不追，等回檔";
+    reasons.push("短線偏熱");
+  } else if (stock.category === "core" && (flow || (change90 !== null && change90 > 0 && change90 < 25))) {
+    tier = "A";
+    action = "回檔可分批";
+    reasons.push("趨勢與價格未失控");
+  } else if (stock.category === "growth" && flow && change90 !== null && change90 < 30) {
+    tier = "B";
+    action = "波段等月線，不追高";
+    reasons.push("有籌碼但需停損");
+  } else if (stock.category === "watch" && !flow) {
+    reasons.push("缺少確認訊號");
+  }
+
+  return {
+    ...stock,
+    tier,
+    action,
+    reasons: reasons.slice(0, 4),
+    latestClose: market?.latestClose || null
+  };
+}
+
+function tierLabel(tier) {
+  return {
+    A: "A 可分批",
+    B: "B 可守不追",
+    C: "C 只觀察",
+    D: "D 降風險"
+  }[tier];
+}
+
+function renderDecisionBoard() {
+  if (!decisionBoard || !decisionSummary) return;
+
+  const decisions = stocks.map(evaluateStock);
+  const groups = ["A", "B", "C", "D"].map((tier) => ({
+    tier,
+    rows: decisions.filter((item) => item.tier === tier)
+  }));
+
+  decisionSummary.querySelectorAll("article").forEach((card, index) => {
+    card.querySelector("strong").textContent = String(groups[index].rows.length);
+  });
+
+  decisionBoard.innerHTML = groups
+    .map((group) => `
+      <section class="decision-column tier-${group.tier.toLowerCase()}">
+        <h3>${tierLabel(group.tier)}</h3>
+        <div class="decision-list">
+          ${group.rows.length ? group.rows
+            .slice(0, 8)
+            .map((item) => `
+              <article class="decision-card">
+                <div class="decision-card-head">
+                  <strong>${item.code} ${item.name}</strong>
+                  <span>${item.latestClose ? Number(item.latestClose).toLocaleString("zh-TW") : "無價"}</span>
+                </div>
+                <p>${item.action}</p>
+                <ul>
+                  ${item.reasons.map((reason) => `<li>${reason}</li>`).join("")}
+                </ul>
+              </article>
+            `)
+            .join("") : `<p class="decision-empty">目前沒有標的。</p>`}
+        </div>
+      </section>
+    `)
+    .join("");
+}
 
 function renderTickerOptions() {
   tickerSelect.innerHTML = chartSymbols
@@ -219,6 +330,7 @@ async function loadMarketHistory() {
     marketHistory = { rows: [] };
   }
   renderChart(tickerSelect.value || "TWSE:2330");
+  renderDecisionBoard();
 }
 
 function renderCustomWatchlist() {
@@ -297,6 +409,7 @@ function formatLots(value) {
 }
 
 function renderFlows(payload) {
+  institutionalFlows = payload;
   const rows = (payload.rows || []).slice(0, 9);
   flowStatus.textContent = `${payload.asOf}｜${payload.source}`;
   if (payload.asOf && payload.asOf !== "範例資料") {
@@ -314,6 +427,7 @@ function renderFlows(payload) {
       </article>
     `)
     .join("");
+  renderDecisionBoard();
 }
 
 async function loadFlows() {
