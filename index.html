@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>散戶翻身系統｜法人級研究台</title>
-    <link rel="stylesheet" href="styles.css?v=20260529-market-monitor">
+    <link rel="stylesheet" href="styles.css?v=20260603-portfolio">
   </head>
   <body>
     <a class="skip-link" href="#brief">跳到主要內容</a>
@@ -22,6 +22,7 @@
     <main class="workspace">
       <aside class="sidebar" aria-label="研究模組" role="tablist">
         <button class="nav-button active" data-target="brief" role="tab" aria-selected="true" aria-controls="brief">研究總覽</button>
+        <button class="nav-button" data-target="portfolio" role="tab" aria-selected="false" aria-controls="portfolio">我的股票</button>
         <button class="nav-button" data-target="market" role="tab" aria-selected="false" aria-controls="market">市場監控</button>
         <button class="nav-button" data-target="tsmc" role="tab" aria-selected="false" aria-controls="tsmc">台積電法說會</button>
         <button class="nav-button" data-target="watchlist" role="tab" aria-selected="false" aria-controls="watchlist">40 檔權值股</button>
@@ -73,6 +74,71 @@
               <li><strong>策略：</strong>權值核心看長線保護，題材成長股看月線與停損。</li>
               <li><strong>紀律：</strong>沒有買點就不買；跌破條件就退出；不要用故事取代紀律。</li>
             </ul>
+          </div>
+        </section>
+
+        <section id="portfolio" class="panel" role="tabpanel">
+          <div class="section-heading">
+            <h2>我的股票決策中心</h2>
+            <p>新增持股或觀察標的後，首頁會自動依照紀律分成 A/B/C/D。資料存在你的瀏覽器，不會上傳。</p>
+          </div>
+
+          <form class="portfolio-form" id="portfolioForm">
+            <label>股票代號<input id="portfolioCode" inputmode="numeric" maxlength="10" placeholder="2330" required></label>
+            <label>股票名稱<input id="portfolioName" placeholder="台積電"></label>
+            <label>
+              名單
+              <select id="portfolioKind">
+                <option value="holding">持股</option>
+                <option value="watching">觀察</option>
+              </select>
+            </label>
+            <label>
+              策略
+              <select id="portfolioStrategy">
+                <option value="core">長線護體</option>
+                <option value="growth">波動成長</option>
+                <option value="watch">只觀察</option>
+              </select>
+            </label>
+            <label>成本<input id="portfolioCost" inputmode="decimal" placeholder="可留空"></label>
+            <label>現價<input id="portfolioPrice" inputmode="decimal" placeholder="手動輸入"></label>
+            <label>股數<input id="portfolioShares" inputmode="numeric" placeholder="可留空"></label>
+            <label>停損%<input id="portfolioStop" inputmode="decimal" value="8"></label>
+            <label>
+              財報/法說
+              <select id="portfolioFundamental">
+                <option value="confirmed">已驗證</option>
+                <option value="unknown">待確認</option>
+                <option value="weak">轉弱</option>
+              </select>
+            </label>
+            <label>
+              法人籌碼
+              <select id="portfolioChip">
+                <option value="buying">偏多</option>
+                <option value="neutral">普通</option>
+                <option value="selling">轉賣</option>
+              </select>
+            </label>
+            <label>
+              市場情緒
+              <select id="portfolioSentiment">
+                <option value="normal">正常</option>
+                <option value="hot">過熱</option>
+                <option value="panic">恐慌</option>
+              </select>
+            </label>
+            <button class="primary-button" type="submit">加入 / 更新</button>
+          </form>
+
+          <div class="portfolio-table-wrap">
+            <table class="discipline portfolio-table">
+              <thead>
+                <tr><th>標的</th><th>部位</th><th>紀律判斷</th><th>動作</th></tr>
+              </thead>
+              <tbody id="portfolioRows"></tbody>
+            </table>
           </div>
         </section>
 
@@ -276,6 +342,6 @@
       <p>本網站是研究流程工具，不是投資建議。實際交易需自行確認價格、籌碼與風險承受度。官方資料更新腳本見 README。</p>
     </footer>
 
-    <script src="app.js?v=20260529-market-monitor"></script>
+    <script src="app.js?v=20260603-portfolio"></script>
   </body>
 </html>

@@ -53,6 +53,19 @@ const flowStatus = document.querySelector("#flowStatus");
 const asOfValue = document.querySelector("#asOfValue");
 const decisionSummary = document.querySelector("#decisionSummary");
 const decisionBoard = document.querySelector("#decisionBoard");
+const portfolioForm = document.querySelector("#portfolioForm");
+const portfolioRows = document.querySelector("#portfolioRows");
+const portfolioCode = document.querySelector("#portfolioCode");
+const portfolioName = document.querySelector("#portfolioName");
+const portfolioKind = document.querySelector("#portfolioKind");
+const portfolioStrategy = document.querySelector("#portfolioStrategy");
+const portfolioCost = document.querySelector("#portfolioCost");
+const portfolioPrice = document.querySelector("#portfolioPrice");
+const portfolioShares = document.querySelector("#portfolioShares");
+const portfolioStop = document.querySelector("#portfolioStop");
+const portfolioFundamental = document.querySelector("#portfolioFundamental");
+const portfolioChip = document.querySelector("#portfolioChip");
+const portfolioSentiment = document.querySelector("#portfolioSentiment");
 const tickerSelect = document.querySelector("#tickerSelect");
 const chartTitle = document.querySelector("#chartTitle");
 const priceChart = document.querySelector("#priceChart");
@@ -75,6 +88,7 @@ const chartSymbols = [
 ];
 
 const customWatchlistKey = "retailResearchWatchlist";
+const portfolioStorageKey = "retailResearchPortfolio";
 let marketHistory = { rows: [] };
 let institutionalFlows = { rows: [] };
 
@@ -139,6 +153,21 @@ function saveCustomWatchlist(codes) {
 
 let customTickers = loadCustomWatchlist();
 
+function loadPortfolio() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(portfolioStorageKey) || "[]");
+    return Array.isArray(saved) ? saved : [];
+  } catch {
+    return [];
+  }
+}
+
+function savePortfolio(items) {
+  localStorage.setItem(portfolioStorageKey, JSON.stringify(items));
+}
+
+let portfolioItems = loadPortfolio();
+
 function marketRowForCode(code) {
   return (marketHistory.rows || []).find((row) => row.code === code);
 }
@@ -153,6 +182,74 @@ function recentChangePercent(row) {
   const latest = points.at(-1);
   if (!first || !latest) return null;
   return ((latest.close - first.close) / first.close) * 100;
+}
+
+function numberValue(value) {
+  const parsed = Number(String(value || "").replace(/,/g, ""));
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function strategyLabel(value) {
+  return {
+    core: "長線護體",
+    growth: "波動成長",
+    watch: "只觀察"
+  }[value] || "只觀察";
+}
+
+function evaluatePortfolioItem(item) {
+  const cost = numberValue(item.cost);
+  const price = numberValue(item.price);
+  const stopPercent = numberValue(item.stopPercent) || 8;
+  const gainPercent = cost && price ? ((price - cost) / cost) * 100 : null;
+  const reasons = [];
+  let tier = "C";
+  let action = "只觀察，不急著買";
+
+  if (item.strategy === "core") reasons.push("長線護體");
+  if (item.strategy === "growth") reasons.push("波動成長");
+  if (item.strategy === "watch") reasons.push("觀察名單");
+  if (item.kind === "holding") reasons.push("持股");
+  if (gainPercent !== null) reasons.push(`損益 ${gainPercent >= 0 ? "+" : ""}${gainPercent.toFixed(1)}%`);
+
+  if (item.fundamental === "weak") {
+    tier = "D";
+    action = "基本面轉弱，先降風險";
+    reasons.push("財報/法說轉弱");
+  } else if (gainPercent !== null && gainPercent <= -stopPercent) {
+    tier = "D";
+    action = "跌破停損，執行紀律";
+    reasons.push(`跌破 -${stopPercent}%`);
+  } else if (item.chip === "selling") {
+    tier = "D";
+    action = "法人轉賣，停止加碼";
+    reasons.push("籌碼轉弱");
+  } else if (item.sentiment === "hot" || (gainPercent !== null && gainPercent >= 25)) {
+    tier = "B";
+    action = "可守不追，等冷卻";
+    reasons.push(item.sentiment === "hot" ? "市場過熱" : "短線漲幅大");
+  } else if (item.strategy === "core" && item.fundamental === "confirmed" && item.chip === "buying") {
+    tier = "A";
+    action = item.kind === "holding" ? "可續抱，回檔再加" : "回檔可分批";
+    reasons.push("趨勢與籌碼同向");
+  } else if (item.strategy === "growth" && item.fundamental === "confirmed" && item.chip === "buying") {
+    tier = "B";
+    action = "等月線，不追高";
+    reasons.push("波動股要等買點");
+  } else if (item.fundamental === "unknown") {
+    reasons.push("缺財報/法說確認");
+  }
+
+  return {
+    code: item.code,
+    name: item.name || stockNameForCode(item.code),
+    tier,
+    action,
+    reasons: reasons.slice(0, 4),
+    latestClose: price,
+    isPortfolio: true,
+    gainPercent
+  };
 }
 
 function evaluateStock(stock) {
@@ -211,7 +308,7 @@ function tierLabel(tier) {
 function renderDecisionBoard() {
   if (!decisionBoard || !decisionSummary) return;
 
-  const decisions = stocks.map(evaluateStock);
+  const decisions = portfolioItems.length ? portfolioItems.map(evaluatePortfolioItem) : stocks.map(evaluateStock);
   const groups = ["A", "B", "C", "D"].map((tier) => ({
     tier,
     rows: decisions.filter((item) => item.tier === tier)
@@ -245,6 +342,43 @@ function renderDecisionBoard() {
       </section>
     `)
     .join("");
+}
+
+function renderPortfolio() {
+  if (!portfolioRows) return;
+
+  if (!portfolioItems.length) {
+    portfolioRows.innerHTML = `<tr><td colspan="4">尚未新增股票。新增後首頁會優先顯示你的 A/B/C/D 決策。</td></tr>`;
+    renderDecisionBoard();
+    return;
+  }
+
+  portfolioRows.innerHTML = portfolioItems
+    .map((item) => {
+      const result = evaluatePortfolioItem(item);
+      const position = item.kind === "holding" ? "持股" : "觀察";
+      const costText = item.cost ? `成本 ${item.cost}` : "成本未填";
+      const priceText = item.price ? `現價 ${item.price}` : "現價未填";
+      return `
+        <tr>
+          <td><strong>${item.code} ${item.name || stockNameForCode(item.code)}</strong><br><span>${strategyLabel(item.strategy)}</span></td>
+          <td>${position}<br><span>${costText}｜${priceText}</span></td>
+          <td><strong>${tierLabel(result.tier)}</strong><br><span>${result.action}</span></td>
+          <td>
+            <button class="table-button" data-edit-code="${item.code}" type="button">編輯</button>
+            <button class="table-button danger" data-remove-code="${item.code}" type="button">刪除</button>
+          </td>
+        </tr>
+      `;
+    })
+    .join("");
+  renderDecisionBoard();
+}
+
+function resetPortfolioForm() {
+  if (!portfolioForm) return;
+  portfolioForm.reset();
+  portfolioStop.value = "8";
 }
 
 function renderTickerOptions() {
@@ -446,6 +580,59 @@ filter.addEventListener("change", (event) => {
   renderStocks(event.target.value);
 });
 
+portfolioForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const code = portfolioCode.value.trim().toUpperCase();
+  if (!code) return;
+
+  const item = {
+    code,
+    name: portfolioName.value.trim() || stockNameForCode(code),
+    kind: portfolioKind.value,
+    strategy: portfolioStrategy.value,
+    cost: portfolioCost.value.trim(),
+    price: portfolioPrice.value.trim(),
+    shares: portfolioShares.value.trim(),
+    stopPercent: portfolioStop.value.trim() || "8",
+    fundamental: portfolioFundamental.value,
+    chip: portfolioChip.value,
+    sentiment: portfolioSentiment.value
+  };
+
+  portfolioItems = [item, ...portfolioItems.filter((stock) => stock.code !== code)];
+  savePortfolio(portfolioItems);
+  renderPortfolio();
+  resetPortfolioForm();
+});
+
+portfolioRows.addEventListener("click", (event) => {
+  const removeCode = event.target.dataset.removeCode;
+  const editCode = event.target.dataset.editCode;
+
+  if (removeCode) {
+    portfolioItems = portfolioItems.filter((item) => item.code !== removeCode);
+    savePortfolio(portfolioItems);
+    renderPortfolio();
+    return;
+  }
+
+  if (editCode) {
+    const item = portfolioItems.find((stock) => stock.code === editCode);
+    if (!item) return;
+    portfolioCode.value = item.code;
+    portfolioName.value = item.name || "";
+    portfolioKind.value = item.kind;
+    portfolioStrategy.value = item.strategy;
+    portfolioCost.value = item.cost || "";
+    portfolioPrice.value = item.price || "";
+    portfolioShares.value = item.shares || "";
+    portfolioStop.value = item.stopPercent || "8";
+    portfolioFundamental.value = item.fundamental;
+    portfolioChip.value = item.chip;
+    portfolioSentiment.value = item.sentiment;
+  }
+});
+
 tickerSelect.addEventListener("change", (event) => {
   renderChart(event.target.value);
 });
@@ -490,6 +677,7 @@ buildBtn.addEventListener("click", () => {
 renderStocks();
 renderTickerOptions();
 renderCustomWatchlist();
+renderPortfolio();
 panels.forEach((panel) => {
   panel.hidden = !panel.classList.contains("active");
 });

@@ -119,6 +119,8 @@ a {
   .decision-strip article,
   .decision-column,
   .decision-card,
+  .portfolio-form,
+  .portfolio-table-wrap,
   .framework article,
   .stock-card,
   .rules,
@@ -236,7 +238,8 @@ textarea {
 .stock-grid,
 .macro-grid,
 .decision-strip,
-.decision-board {
+.decision-board,
+.portfolio-form {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
@@ -255,6 +258,8 @@ textarea {
 .decision-strip article,
 .decision-column,
 .decision-card,
+.portfolio-form,
+.portfolio-table-wrap,
 .framework article,
 .stock-card,
 .rules,
@@ -276,6 +281,7 @@ textarea {
 .summary-grid article,
 .decision-strip article,
 .decision-column,
+.portfolio-form,
 .framework article,
 .stock-card,
 .chart-panel,
@@ -367,6 +373,56 @@ textarea {
 
 .decision-empty {
   color: var(--muted);
+}
+
+.portfolio-form {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 16px;
+}
+
+.portfolio-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.portfolio-form label input,
+.portfolio-form label select {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.portfolio-form .primary-button {
+  align-self: end;
+  margin: 0;
+}
+
+.portfolio-table-wrap {
+  overflow-x: auto;
+}
+
+.portfolio-table {
+  border: 0;
+}
+
+.portfolio-table span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.table-button {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  padding: 6px 9px;
+}
+
+.table-button.danger {
+  color: var(--danger);
 }
 
 .summary-grid strong {
@@ -821,6 +877,8 @@ footer {
   .decision-strip article,
   .decision-column,
   .decision-card,
+  .portfolio-form,
+  .portfolio-table-wrap,
   .framework article,
   .stock-card,
   .rules,
@@ -867,6 +925,7 @@ footer {
   .summary-grid,
   .decision-strip,
   .decision-board,
+  .portfolio-form,
   .framework,
   .stock-grid,
   .macro-grid,
