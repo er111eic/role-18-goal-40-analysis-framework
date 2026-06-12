@@ -1,34 +1,24 @@
 {
-  "asOf": "20260611",
+  "asOf": "20260612",
   "source": "TWSE T86 三大法人買賣超日報",
-  "endpoint": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260611&selectType=ALLBUT0999&response=json",
+  "endpoint": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260612&selectType=ALLBUT0999&response=json",
   "rows": [
     {
-      "code": "3481",
-      "name": "群創",
-      "totalNetBuyLots": 33030,
-      "foreignNetBuyLots": 34595,
-      "trustNetBuyLots": 112,
+      "code": "2887",
+      "name": "台新新光金",
+      "totalNetBuyLots": 91935,
+      "foreignNetBuyLots": 85214,
+      "trustNetBuyLots": 10101,
       "dealerNetBuyLots": 0,
       "signal": "外資與投信同步買超，列入優先觀察",
       "action": "可能已受市場注意，只等回檔不追高"
     },
     {
-      "code": "2892",
-      "name": "第一金",
-      "totalNetBuyLots": 21533,
-      "foreignNetBuyLots": 19414,
-      "trustNetBuyLots": 418,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "可能已受市場注意，只等回檔不追高"
-    },
-    {
-      "code": "2890",
-      "name": "永豐金",
-      "totalNetBuyLots": 16333,
-      "foreignNetBuyLots": 13608,
-      "trustNetBuyLots": 878,
+      "code": "2610",
+      "name": "華航",
+      "totalNetBuyLots": 43788,
+      "foreignNetBuyLots": 41603,
+      "trustNetBuyLots": 1249,
       "dealerNetBuyLots": 0,
       "signal": "外資與投信同步買超，列入優先觀察",
       "action": "可能已受市場注意，只等回檔不追高"
@@ -36,9 +26,99 @@
     {
       "code": "2344",
       "name": "華邦電",
-      "totalNetBuyLots": 12278,
-      "foreignNetBuyLots": 6599,
-      "trustNetBuyLots": 3896,
+      "totalNetBuyLots": 38857,
+      "foreignNetBuyLots": 33574,
+      "trustNetBuyLots": 3179,
+      "dealerNetBuyLots": 0,
+      "signal": "外資與投信同步買超，列入優先觀察",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2303",
+      "name": "聯電",
+      "totalNetBuyLots": 37955,
+      "foreignNetBuyLots": 15230,
+      "trustNetBuyLots": 17459,
+      "dealerNetBuyLots": 0,
+      "signal": "外資與投信同步買超，列入優先觀察",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2618",
+      "name": "長榮航",
+      "totalNetBuyLots": 35216,
+      "foreignNetBuyLots": 37749,
+      "trustNetBuyLots": -5396,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "3576",
+      "name": "聯合再生",
+      "totalNetBuyLots": 31127,
+      "foreignNetBuyLots": 30963,
+      "trustNetBuyLots": 0,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2890",
+      "name": "永豐金",
+      "totalNetBuyLots": 30804,
+      "foreignNetBuyLots": 30858,
+      "trustNetBuyLots": -16,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2834",
+      "name": "臺企銀",
+      "totalNetBuyLots": 29874,
+      "foreignNetBuyLots": 29746,
+      "trustNetBuyLots": -68,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2002",
+      "name": "中鋼",
+      "totalNetBuyLots": 29250,
+      "foreignNetBuyLots": 28338,
+      "trustNetBuyLots": 95,
+      "dealerNetBuyLots": 0,
+      "signal": "外資與投信同步買超，列入優先觀察",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "1605",
+      "name": "華新",
+      "totalNetBuyLots": 29225,
+      "foreignNetBuyLots": 27618,
+      "trustNetBuyLots": 145,
+      "dealerNetBuyLots": 0,
+      "signal": "外資與投信同步買超，列入優先觀察",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2892",
+      "name": "第一金",
+      "totalNetBuyLots": 28852,
+      "foreignNetBuyLots": 28859,
+      "trustNetBuyLots": -29,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2408",
+      "name": "南亞科",
+      "totalNetBuyLots": 27789,
+      "foreignNetBuyLots": 25213,
+      "trustNetBuyLots": 944,
       "dealerNetBuyLots": 0,
       "signal": "外資與投信同步買超，列入優先觀察",
       "action": "可能已受市場注意，只等回檔不追高"
@@ -46,262 +126,182 @@
     {
       "code": "2801",
       "name": "彰銀",
-      "totalNetBuyLots": 11928,
-      "foreignNetBuyLots": 11397,
-      "trustNetBuyLots": 234,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "可能已受市場注意，只等回檔不追高"
-    },
-    {
-      "code": "3045",
-      "name": "台灣大",
-      "totalNetBuyLots": 11768,
-      "foreignNetBuyLots": 11549,
-      "trustNetBuyLots": 229,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "可能已受市場注意，只等回檔不追高"
-    },
-    {
-      "code": "2313",
-      "name": "華通",
-      "totalNetBuyLots": 11090,
-      "foreignNetBuyLots": 10647,
-      "trustNetBuyLots": 90,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "可能已受市場注意，只等回檔不追高"
-    },
-    {
-      "code": "6116",
-      "name": "彩晶",
-      "totalNetBuyLots": 8139,
-      "foreignNetBuyLots": 7629,
-      "trustNetBuyLots": 0,
+      "totalNetBuyLots": 23411,
+      "foreignNetBuyLots": 23525,
+      "trustNetBuyLots": -100,
       "dealerNetBuyLots": 0,
       "signal": "外資買超，需追蹤連續性",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "2887",
-      "name": "台新新光金",
-      "totalNetBuyLots": 8079,
-      "foreignNetBuyLots": -2734,
-      "trustNetBuyLots": 6791,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "1216",
-      "name": "統一",
-      "totalNetBuyLots": 7696,
-      "foreignNetBuyLots": 6667,
-      "trustNetBuyLots": 295,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "列入觀察，回測月線不破才分批"
-    },
-    {
-      "code": "2542",
-      "name": "興富發",
-      "totalNetBuyLots": 7591,
-      "foreignNetBuyLots": -2009,
-      "trustNetBuyLots": 9551,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "2356",
-      "name": "英業達",
-      "totalNetBuyLots": 7308,
-      "foreignNetBuyLots": 7083,
-      "trustNetBuyLots": 117,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "列入觀察，回測月線不破才分批"
-    },
-    {
-      "code": "8150",
-      "name": "南茂",
-      "totalNetBuyLots": 7203,
-      "foreignNetBuyLots": 5938,
-      "trustNetBuyLots": 2263,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "列入觀察，回測月線不破才分批"
-    },
-    {
-      "code": "2412",
-      "name": "中華電",
-      "totalNetBuyLots": 6838,
-      "foreignNetBuyLots": 5853,
-      "trustNetBuyLots": 275,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "列入觀察，回測月線不破才分批"
-    },
-    {
-      "code": "2881",
-      "name": "富邦金",
-      "totalNetBuyLots": 6325,
-      "foreignNetBuyLots": -14398,
-      "trustNetBuyLots": 19229,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
+      "action": "可能已受市場注意，只等回檔不追高"
     },
     {
       "code": "2884",
       "name": "玉山金",
-      "totalNetBuyLots": 6316,
-      "foreignNetBuyLots": 2859,
-      "trustNetBuyLots": 1747,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "列入觀察，回測月線不破才分批"
-    },
-    {
-      "code": "2355",
-      "name": "敬鵬",
-      "totalNetBuyLots": 5671,
-      "foreignNetBuyLots": 5602,
-      "trustNetBuyLots": 0,
+      "totalNetBuyLots": 22565,
+      "foreignNetBuyLots": 23618,
+      "trustNetBuyLots": -254,
       "dealerNetBuyLots": 0,
       "signal": "外資買超，需追蹤連續性",
-      "action": "僅觀察，不用單日買超進場"
+      "action": "可能已受市場注意，只等回檔不追高"
     },
     {
-      "code": "5871",
-      "name": "中租-KY",
-      "totalNetBuyLots": 5357,
-      "foreignNetBuyLots": -2197,
-      "trustNetBuyLots": 7644,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "2382",
-      "name": "廣達",
-      "totalNetBuyLots": 5354,
-      "foreignNetBuyLots": -12873,
-      "trustNetBuyLots": 18047,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "3042",
-      "name": "晶技",
-      "totalNetBuyLots": 4925,
-      "foreignNetBuyLots": 4930,
-      "trustNetBuyLots": 391,
+      "code": "1303",
+      "name": "南亞",
+      "totalNetBuyLots": 22326,
+      "foreignNetBuyLots": 20882,
+      "trustNetBuyLots": 402,
       "dealerNetBuyLots": 0,
       "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "列入觀察，回測月線不破才分批"
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "8112",
+      "name": "至上",
+      "totalNetBuyLots": 17556,
+      "foreignNetBuyLots": 17466,
+      "trustNetBuyLots": -460,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
     },
     {
       "code": "2406",
       "name": "國碩",
-      "totalNetBuyLots": 4464,
-      "foreignNetBuyLots": 4456,
+      "totalNetBuyLots": 15996,
+      "foreignNetBuyLots": 16057,
+      "trustNetBuyLots": 0,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "6443",
+      "name": "元晶",
+      "totalNetBuyLots": 14137,
+      "foreignNetBuyLots": 13937,
+      "trustNetBuyLots": 0,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2867",
+      "name": "三商壽",
+      "totalNetBuyLots": 13103,
+      "foreignNetBuyLots": 10281,
+      "trustNetBuyLots": 0,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2845",
+      "name": "遠東銀",
+      "totalNetBuyLots": 12773,
+      "foreignNetBuyLots": 13015,
+      "trustNetBuyLots": -269,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2891",
+      "name": "中信金",
+      "totalNetBuyLots": 12157,
+      "foreignNetBuyLots": 40901,
+      "trustNetBuyLots": -29617,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "可能已受市場注意，只等回檔不追高"
+    },
+    {
+      "code": "2609",
+      "name": "陽明",
+      "totalNetBuyLots": 9888,
+      "foreignNetBuyLots": 9076,
+      "trustNetBuyLots": -30,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "僅觀察，不用單日買超進場"
+    },
+    {
+      "code": "5880",
+      "name": "合庫金",
+      "totalNetBuyLots": 8942,
+      "foreignNetBuyLots": 9098,
+      "trustNetBuyLots": -59,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "僅觀察，不用單日買超進場"
+    },
+    {
+      "code": "8039",
+      "name": "台虹",
+      "totalNetBuyLots": 7827,
+      "foreignNetBuyLots": 7535,
       "trustNetBuyLots": 0,
       "dealerNetBuyLots": 0,
       "signal": "外資買超，需追蹤連續性",
       "action": "僅觀察，不用單日買超進場"
     },
     {
-      "code": "3550",
-      "name": "聯穎",
-      "totalNetBuyLots": 3568,
-      "foreignNetBuyLots": 3584,
+      "code": "1326",
+      "name": "台化",
+      "totalNetBuyLots": 7406,
+      "foreignNetBuyLots": 6566,
+      "trustNetBuyLots": -25,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "僅觀察，不用單日買超進場"
+    },
+    {
+      "code": "2355",
+      "name": "敬鵬",
+      "totalNetBuyLots": 7331,
+      "foreignNetBuyLots": 6868,
+      "trustNetBuyLots": -4,
+      "dealerNetBuyLots": 0,
+      "signal": "外資買超，需追蹤連續性",
+      "action": "僅觀察，不用單日買超進場"
+    },
+    {
+      "code": "8105",
+      "name": "凌巨",
+      "totalNetBuyLots": 7150,
+      "foreignNetBuyLots": 7187,
       "trustNetBuyLots": 0,
       "dealerNetBuyLots": 0,
       "signal": "外資買超，需追蹤連續性",
       "action": "僅觀察，不用單日買超進場"
     },
     {
-      "code": "2337",
-      "name": "旺宏",
-      "totalNetBuyLots": 3337,
-      "foreignNetBuyLots": 7219,
-      "trustNetBuyLots": -2474,
-      "dealerNetBuyLots": 0,
-      "signal": "外資買超，需追蹤連續性",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "9105",
-      "name": "泰金寶-DR",
-      "totalNetBuyLots": 3262,
-      "foreignNetBuyLots": 3418,
+      "code": "6153",
+      "name": "嘉聯益",
+      "totalNetBuyLots": 6890,
+      "foreignNetBuyLots": 6823,
       "trustNetBuyLots": 0,
       "dealerNetBuyLots": 0,
       "signal": "外資買超，需追蹤連續性",
       "action": "僅觀察，不用單日買超進場"
     },
     {
-      "code": "2880",
-      "name": "華南金",
-      "totalNetBuyLots": 3121,
-      "foreignNetBuyLots": -4529,
-      "trustNetBuyLots": 5932,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "2897",
-      "name": "王道銀行",
-      "totalNetBuyLots": 2997,
-      "foreignNetBuyLots": 2931,
+      "code": "1314",
+      "name": "中石化",
+      "totalNetBuyLots": 6786,
+      "foreignNetBuyLots": 6787,
       "trustNetBuyLots": 0,
       "dealerNetBuyLots": 0,
       "signal": "外資買超，需追蹤連續性",
       "action": "僅觀察，不用單日買超進場"
     },
     {
-      "code": "3576",
-      "name": "聯合再生",
-      "totalNetBuyLots": 2940,
-      "foreignNetBuyLots": 2937,
-      "trustNetBuyLots": 0,
+      "code": "1301",
+      "name": "台塑",
+      "totalNetBuyLots": 6436,
+      "foreignNetBuyLots": 5947,
+      "trustNetBuyLots": -36,
       "dealerNetBuyLots": 0,
       "signal": "外資買超，需追蹤連續性",
       "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "2883",
-      "name": "凱基金",
-      "totalNetBuyLots": 2869,
-      "foreignNetBuyLots": -81420,
-      "trustNetBuyLots": 81727,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "4938",
-      "name": "和碩",
-      "totalNetBuyLots": 2867,
-      "foreignNetBuyLots": -8280,
-      "trustNetBuyLots": 11500,
-      "dealerNetBuyLots": 0,
-      "signal": "投信買超，偏波段籌碼",
-      "action": "僅觀察，不用單日買超進場"
-    },
-    {
-      "code": "2312",
-      "name": "金寶",
-      "totalNetBuyLots": 2836,
-      "foreignNetBuyLots": 3107,
-      "trustNetBuyLots": 12,
-      "dealerNetBuyLots": 0,
-      "signal": "外資與投信同步買超，列入優先觀察",
-      "action": "列入觀察，回測月線不破才分批"
     }
   ]
 }
