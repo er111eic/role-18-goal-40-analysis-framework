@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-05T19:20:10.930Z",
+  "asOf": "2026-10-06T16:52:09.089Z",
   "source": "Yahoo Finance chart API",
   "rows": [
     {
@@ -9,7 +9,7 @@
       "tradingView": "TWSE:2330",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-05T05:30:11.000Z",
+      "regularMarketTime": "2026-10-06T05:30:08.000Z",
       "latestClose": 2575,
       "latestDate": "2026-10-05",
       "change": 75,
@@ -654,7 +654,7 @@
       "tradingView": "TWSE:2317",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-05T05:30:06.000Z",
+      "regularMarketTime": "2026-10-06T05:30:06.000Z",
       "latestClose": 254,
       "latestDate": "2026-10-05",
       "change": 3,
@@ -1299,7 +1299,7 @@
       "tradingView": "TWSE:2454",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-05T05:30:08.000Z",
+      "regularMarketTime": "2026-10-06T05:30:05.000Z",
       "latestClose": 5165,
       "latestDate": "2026-10-05",
       "change": 215,
@@ -1944,7 +1944,7 @@
       "tradingView": "TWSE:2308",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-05T05:30:16.000Z",
+      "regularMarketTime": "2026-10-06T05:30:07.000Z",
       "latestClose": 2005,
       "latestDate": "2026-10-05",
       "change": 120,
@@ -2589,7 +2589,7 @@
       "tradingView": "TWSE:2382",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-05T05:30:17.000Z",
+      "regularMarketTime": "2026-10-06T05:30:13.000Z",
       "latestClose": 331,
       "latestDate": "2026-10-05",
       "change": -1,
@@ -3234,7 +3234,7 @@
       "tradingView": "TWSE:3231",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-05T05:30:03.000Z",
+      "regularMarketTime": "2026-10-06T05:30:04.000Z",
       "latestClose": 189.5,
       "latestDate": "2026-10-05",
       "change": 3,
@@ -3879,11 +3879,11 @@
       "tradingView": "TWSE:TAIEX",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-05T05:33:15.000Z",
-      "latestClose": 48475.73828125,
-      "latestDate": "2026-10-02",
-      "change": 122.25,
-      "changePercent": 0.252825606477299,
+      "regularMarketTime": "2026-10-06T05:33:15.000Z",
+      "latestClose": 49712.0390625,
+      "latestDate": "2026-10-05",
+      "change": 1236.30078125,
+      "changePercent": 2.550349566781514,
       "points": [
         {
           "date": "2026-04-07",
@@ -4504,6 +4504,11 @@
           "date": "2026-10-02",
           "close": 48475.73828125,
           "volume": 4714000
+        },
+        {
+          "date": "2026-10-05",
+          "close": 49712.0390625,
+          "volume": 5839900
         }
       ]
     },
@@ -4514,11 +4519,11 @@
       "tradingView": "NASDAQ:IXIC",
       "currency": "USD",
       "exchangeName": "NIM",
-      "regularMarketTime": "2026-10-05T19:20:08.000Z",
-      "latestClose": 27539.107421875,
-      "latestDate": "2026-10-05",
-      "change": 348.248046875,
-      "changePercent": 1.2807541022230011,
+      "regularMarketTime": "2026-10-06T16:52:06.000Z",
+      "latestClose": 27655.61328125,
+      "latestDate": "2026-10-06",
+      "change": 178.302734375,
+      "changePercent": 0.6489089755375582,
       "points": [
         {
           "date": "2026-04-06",
@@ -5152,8 +5157,13 @@
         },
         {
           "date": "2026-10-05",
-          "close": 27539.107421875,
-          "volume": 4759700000
+          "close": 27477.310546875,
+          "volume": 7828480000
+        },
+        {
+          "date": "2026-10-06",
+          "close": 27655.61328125,
+          "volume": 4526523000
         }
       ]
     },
@@ -5164,11 +5174,11 @@
       "tradingView": "NASDAQ:SOX",
       "currency": "USD",
       "exchangeName": "NIM",
-      "regularMarketTime": "2026-10-05T19:20:07.000Z",
-      "latestClose": 13164.4189453125,
-      "latestDate": "2026-10-05",
-      "change": 27.7490234375,
-      "changePercent": 0.2112333156159516,
+      "regularMarketTime": "2026-10-06T16:52:08.000Z",
+      "latestClose": 13272.4169921875,
+      "latestDate": "2026-10-06",
+      "change": 99.6767578125,
+      "changePercent": 0.756689618401401,
       "points": [
         {
           "date": "2026-04-06",
@@ -5802,7 +5812,12 @@
         },
         {
           "date": "2026-10-05",
-          "close": 13164.4189453125,
+          "close": 13172.740234375,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-06",
+          "close": 13272.4169921875,
           "volume": 0
         }
       ]
@@ -5814,11 +5829,11 @@
       "tradingView": "TVC:DXY",
       "currency": "USD",
       "exchangeName": "NYB",
-      "regularMarketTime": "2026-10-05T19:10:08.000Z",
-      "latestClose": 102.16999816894531,
-      "latestDate": "2026-10-05",
-      "change": 0.23999786376953125,
-      "changePercent": 0.23545360840869606,
+      "regularMarketTime": "2026-10-06T16:42:07.000Z",
+      "latestClose": 101.87699890136719,
+      "latestDate": "2026-10-06",
+      "change": -0.292999267578125,
+      "changePercent": -0.28677622866707897,
       "points": [
         {
           "date": "2026-04-06",
@@ -6454,6 +6469,11 @@
           "date": "2026-10-05",
           "close": 102.16999816894531,
           "volume": 0
+        },
+        {
+          "date": "2026-10-06",
+          "close": 101.87699890136719,
+          "volume": 0
         }
       ]
     },
@@ -6464,11 +6484,11 @@
       "tradingView": "TVC:US10Y",
       "currency": "USD",
       "exchangeName": "CGI",
-      "regularMarketTime": "2026-10-05T18:59:51.000Z",
-      "latestClose": 5.310999870300293,
-      "latestDate": "2026-10-05",
-      "change": 0.03399991989135742,
-      "changePercent": 0.6443039645797729,
+      "regularMarketTime": "2026-10-06T16:37:04.000Z",
+      "latestClose": 5.2769999504089355,
+      "latestDate": "2026-10-06",
+      "change": -0.03399991989135742,
+      "changePercent": -0.640179264200114,
       "points": [
         {
           "date": "2026-04-06",
@@ -7103,6 +7123,11 @@
         {
           "date": "2026-10-05",
           "close": 5.310999870300293,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-06",
+          "close": 5.2769999504089355,
           "volume": 0
         }
       ]
