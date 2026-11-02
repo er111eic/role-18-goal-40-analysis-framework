@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-30T16:44:59.752Z",
+  "asOf": "2026-11-02T20:26:00.364Z",
   "source": "Yahoo Finance chart API",
   "rows": [
     {
@@ -9,17 +9,12 @@
       "tradingView": "TWSE:2330",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-30T05:30:09.000Z",
-      "latestClose": 2415,
-      "latestDate": "2026-10-29",
-      "change": -10,
-      "changePercent": -0.4123711340206186,
+      "regularMarketTime": "2026-11-02T05:30:08.000Z",
+      "latestClose": 2370,
+      "latestDate": "2026-10-30",
+      "change": -45,
+      "changePercent": -1.8633540372670807,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 2135,
-          "volume": 48975164
-        },
         {
           "date": "2026-05-04",
           "close": 2275,
@@ -634,6 +629,11 @@
           "date": "2026-10-29",
           "close": 2415,
           "volume": 16872114
+        },
+        {
+          "date": "2026-10-30",
+          "close": 2370,
+          "volume": 29664858
         }
       ]
     },
@@ -644,17 +644,12 @@
       "tradingView": "TWSE:2317",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-30T05:30:08.000Z",
-      "latestClose": 248,
-      "latestDate": "2026-10-29",
-      "change": -3.5,
-      "changePercent": -1.3916500994035785,
+      "regularMarketTime": "2026-11-02T05:30:05.000Z",
+      "latestClose": 245.5,
+      "latestDate": "2026-10-30",
+      "change": -2.5,
+      "changePercent": -1.0080645161290323,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 219.5,
-          "volume": 71802349
-        },
         {
           "date": "2026-05-04",
           "close": 227.5,
@@ -1269,6 +1264,11 @@
           "date": "2026-10-29",
           "close": 248,
           "volume": 20886437
+        },
+        {
+          "date": "2026-10-30",
+          "close": 245.5,
+          "volume": 32648508
         }
       ]
     },
@@ -1279,17 +1279,12 @@
       "tradingView": "TWSE:2454",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-30T05:30:06.000Z",
-      "latestClose": 4045,
-      "latestDate": "2026-10-29",
-      "change": -190,
-      "changePercent": -4.4864226682408495,
+      "regularMarketTime": "2026-11-02T05:30:06.000Z",
+      "latestClose": 3915,
+      "latestDate": "2026-10-30",
+      "change": -130,
+      "changePercent": -3.2138442521631645,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 2610,
-          "volume": 16785387
-        },
         {
           "date": "2026-05-04",
           "close": 2870,
@@ -1904,6 +1899,11 @@
           "date": "2026-10-29",
           "close": 4045,
           "volume": 6123862
+        },
+        {
+          "date": "2026-10-30",
+          "close": 3915,
+          "volume": 11316412
         }
       ]
     },
@@ -1914,17 +1914,12 @@
       "tradingView": "TWSE:2308",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-30T05:30:07.000Z",
-      "latestClose": 1480,
-      "latestDate": "2026-10-29",
-      "change": -70,
-      "changePercent": -4.516129032258064,
+      "regularMarketTime": "2026-11-02T05:30:18.000Z",
+      "latestClose": 1335,
+      "latestDate": "2026-10-30",
+      "change": -145,
+      "changePercent": -9.797297297297296,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 2165,
-          "volume": 13424815
-        },
         {
           "date": "2026-05-04",
           "close": 2220,
@@ -2539,6 +2534,11 @@
           "date": "2026-10-29",
           "close": 1480,
           "volume": 15234584
+        },
+        {
+          "date": "2026-10-30",
+          "close": 1335,
+          "volume": 18334879
         }
       ]
     },
@@ -2549,17 +2549,12 @@
       "tradingView": "TWSE:2382",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-30T05:30:18.000Z",
+      "regularMarketTime": "2026-11-02T05:30:17.000Z",
       "latestClose": 318,
-      "latestDate": "2026-10-29",
-      "change": -12,
-      "changePercent": -3.6363636363636362,
+      "latestDate": "2026-10-30",
+      "change": 0,
+      "changePercent": 0,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 312.5,
-          "volume": 18159119
-        },
         {
           "date": "2026-05-04",
           "close": 318,
@@ -3174,6 +3169,11 @@
           "date": "2026-10-29",
           "close": 318,
           "volume": 11490830
+        },
+        {
+          "date": "2026-10-30",
+          "close": 318,
+          "volume": 13400093
         }
       ]
     },
@@ -3184,17 +3184,12 @@
       "tradingView": "TWSE:3231",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-30T05:30:06.000Z",
-      "latestClose": 188.5,
-      "latestDate": "2026-10-29",
-      "change": -6,
-      "changePercent": -3.0848329048843186,
+      "regularMarketTime": "2026-11-02T05:30:05.000Z",
+      "latestClose": 183.5,
+      "latestDate": "2026-10-30",
+      "change": -5,
+      "changePercent": -2.6525198938992043,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 137,
-          "volume": 26385585
-        },
         {
           "date": "2026-05-04",
           "close": 140.5,
@@ -3809,6 +3804,11 @@
           "date": "2026-10-29",
           "close": 188.5,
           "volume": 24694082
+        },
+        {
+          "date": "2026-10-30",
+          "close": 183.5,
+          "volume": 33214728
         }
       ]
     },
@@ -3819,17 +3819,12 @@
       "tradingView": "TWSE:TAIEX",
       "currency": "TWD",
       "exchangeName": "TAI",
-      "regularMarketTime": "2026-10-30T05:33:15.000Z",
-      "latestClose": 46368.328125,
-      "latestDate": "2026-10-29",
-      "change": -667.25,
-      "changePercent": -1.4186069919811366,
+      "regularMarketTime": "2026-11-02T05:33:25.000Z",
+      "latestClose": 45211.828125,
+      "latestDate": "2026-10-30",
+      "change": -1156.5,
+      "changePercent": -2.4941593686153634,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 38926.62890625,
-          "volume": 5678600
-        },
         {
           "date": "2026-05-04",
           "close": 40705.140625,
@@ -4439,6 +4434,11 @@
           "date": "2026-10-29",
           "close": 46368.328125,
           "volume": 3837400
+        },
+        {
+          "date": "2026-10-30",
+          "close": 45211.828125,
+          "volume": 4001100
         }
       ]
     },
@@ -4449,22 +4449,12 @@
       "tradingView": "NASDAQ:IXIC",
       "currency": "USD",
       "exchangeName": "NIM",
-      "regularMarketTime": "2026-10-30T16:44:58.000Z",
-      "latestClose": 25496.5,
-      "latestDate": "2026-10-30",
-      "change": -688.220703125,
-      "changePercent": -2.6283293640129024,
+      "regularMarketTime": "2026-11-02T20:25:57.000Z",
+      "latestClose": 25318.060546875,
+      "latestDate": "2026-11-02",
+      "change": -118.939453125,
+      "changePercent": -0.4675844365491214,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 24892.310546875,
-          "volume": 8139190000
-        },
-        {
-          "date": "2026-05-01",
-          "close": 25114.439453125,
-          "volume": 7534290000
-        },
         {
           "date": "2026-05-04",
           "close": 25067.80078125,
@@ -5092,8 +5082,13 @@
         },
         {
           "date": "2026-10-30",
-          "close": 25496.5,
-          "volume": 3598836000
+          "close": 25437,
+          "volume": 9068930000
+        },
+        {
+          "date": "2026-11-02",
+          "close": 25318.060546875,
+          "volume": 6104827000
         }
       ]
     },
@@ -5104,22 +5099,12 @@
       "tradingView": "NASDAQ:SOX",
       "currency": "USD",
       "exchangeName": "NIM",
-      "regularMarketTime": "2026-10-30T16:44:58.000Z",
-      "latestClose": 10659.4140625,
-      "latestDate": "2026-10-30",
-      "change": -858.7861328125,
-      "changePercent": -7.455905595059857,
+      "regularMarketTime": "2026-11-02T20:25:56.000Z",
+      "latestClose": 10431.470703125,
+      "latestDate": "2026-11-02",
+      "change": -257.3291015625,
+      "changePercent": -2.407464881601114,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 10503.7001953125,
-          "volume": 0
-        },
-        {
-          "date": "2026-05-01",
-          "close": 10595.33984375,
-          "volume": 0
-        },
         {
           "date": "2026-05-04",
           "close": 10534.66015625,
@@ -5747,7 +5732,12 @@
         },
         {
           "date": "2026-10-30",
-          "close": 10659.4140625,
+          "close": 10688.7998046875,
+          "volume": 0
+        },
+        {
+          "date": "2026-11-02",
+          "close": 10431.470703125,
           "volume": 0
         }
       ]
@@ -5759,22 +5749,12 @@
       "tradingView": "TVC:DXY",
       "currency": "USD",
       "exchangeName": "NYB",
-      "regularMarketTime": "2026-10-30T16:34:58.000Z",
-      "latestClose": 101.90699768066406,
-      "latestDate": "2026-10-30",
-      "change": -0.13300323486328125,
-      "changePercent": -0.13034421175023947,
+      "regularMarketTime": "2026-11-02T20:15:59.000Z",
+      "latestClose": 101.75199890136719,
+      "latestDate": "2026-11-02",
+      "change": -0.12799835205078125,
+      "changePercent": -0.12563639134421653,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 98.08000183105469,
-          "volume": 0
-        },
-        {
-          "date": "2026-05-01",
-          "close": 98.20999908447266,
-          "volume": 0
-        },
         {
           "date": "2026-05-04",
           "close": 98.47000122070312,
@@ -6402,7 +6382,12 @@
         },
         {
           "date": "2026-10-30",
-          "close": 101.90699768066406,
+          "close": 101.87999725341797,
+          "volume": 0
+        },
+        {
+          "date": "2026-11-02",
+          "close": 101.75199890136719,
           "volume": 0
         }
       ]
@@ -6414,22 +6399,12 @@
       "tradingView": "TVC:US10Y",
       "currency": "USD",
       "exchangeName": "CGI",
-      "regularMarketTime": "2026-10-30T16:29:54.000Z",
-      "latestClose": 4.949000358581543,
-      "latestDate": "2026-10-30",
-      "change": -0.03999948501586914,
-      "changePercent": -0.8017535832798656,
+      "regularMarketTime": "2026-11-02T19:59:51.000Z",
+      "latestClose": 4.894000053405762,
+      "latestDate": "2026-11-02",
+      "change": -0.034999847412109375,
+      "changePercent": -0.7100800997440035,
       "points": [
-        {
-          "date": "2026-04-30",
-          "close": 4.389999866485596,
-          "volume": 0
-        },
-        {
-          "date": "2026-05-01",
-          "close": 4.377999782562256,
-          "volume": 0
-        },
         {
           "date": "2026-05-04",
           "close": 4.446000099182129,
@@ -7057,7 +7032,12 @@
         },
         {
           "date": "2026-10-30",
-          "close": 4.949000358581543,
+          "close": 4.928999900817871,
+          "volume": 0
+        },
+        {
+          "date": "2026-11-02",
+          "close": 4.894000053405762,
           "volume": 0
         }
       ]
